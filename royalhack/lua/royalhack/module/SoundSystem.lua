@@ -20,7 +20,16 @@ alpha = 0
 titel = "nope"
 
 
+function Playerdie()
 
+if( deaths < death ) then
+	return true
+else
+	return false
+end
+deaths = death
+
+end
 
 Dom = GetConVarNumber("royalhack_dom")
 HH = GetConVarNumber("royalhack_headh")
@@ -69,6 +78,25 @@ end
 
 hook.Add("HUDPaint","HM",HookMessage)
 
+function ResetAllSounds()
+
+	
+
+		DomPlayed = false
+		HHPlayed = false
+		MulPlayed = false
+		MONPlayed = false
+		RAPlayed = false
+		HUPlayed = false
+		KilPlayed = false
+		LUDPlayed = false
+		UNSPlayed = false
+		ULTPlayed = false
+		HOLPlayed = false
+		WICPlayed = false
+		GODPlayed = false
+		Msg("Sounds Reset")
+end
 
 
 function RoyalHack.SoundSystem()
@@ -208,29 +236,13 @@ if(LocalPlayer():Alive()) then
 		end
 			end
 		end
+
+
 	end
 
 hook.Add("Think","sound",RoyalHack.SoundSystem)
 
-function ResetAllSounds()
 
-	if( DomPlayed == true && HHPlayed == true && MulPlayed == true && MONPlayed == true && RAPlayed == true && HUPlayed == true && KilPlayed == true && LUDPlayed == true && UNSPlayed == true && ULTPlayed == true && HOLPlayed == true && WICPlayed == true && GODPlayed == true ) then
-
-		DomPlayed = false
-		HHPlayed = false
-		MulPlayed = false
-		MONPlayed = false
-		RAPlayed = false
-		HUPlayed = false
-		KilPlayed = false
-		LUDPlayed = false
-		UNSPlayed = false
-		ULTPlayed = false
-		HOLPlayed = false
-		WICPlayed = false
-		GODPlayed = false
-	end
-end
 
 concommand.Add("royalhack_misc_resetsounds",ResetAllSounds)
 

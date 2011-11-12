@@ -16,7 +16,7 @@ local yaw = PlayerView.y
 local roll = PlayerView.r
 
 
-cmd:SetViewAngles(Angle(0,math.random(180,360),0))
+cmd:SetViewAngles(Angle(0,math.random(0,180),0))
 Blickrichtung = cmd:GetViewAngles()
 
 if(Blickrichtung.y < 270 ) then
