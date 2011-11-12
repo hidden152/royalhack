@@ -1,5 +1,6 @@
 //Aimbot Beta
 Opfer = nil
+Playerwaskilled = nil
 function PlayerholdWeapon( ply )
 
 return ( ply:GetActiveWeapon():IsValid() && ply:GetActiveWeapon():IsWeapon() )
@@ -10,7 +11,7 @@ function GetWeaponMode( ply )
 
 	if(ValidEntity(ply)) then
 		if(PlayerholdWeapon(ply)) then
-			if(ply:GetActiveWeapon():GetClass() == "weapon_pistol" or "weapon_deagle" or "weapon_fiveseven" or "weapon_glock" or "weapon_rpg") then
+			if(ply:GetActiveWeapon():GetClass() == "weapon_pistol" or ply:GetActiveWeapon():GetClass() == "weapon_deagle" or ply:GetActiveWeapon():GetClass() == "weapon_rpg" or ply:GetActiveWeapon():GetClass() == "weapon_glock" or ply:GetActiveWeapon():GetClass() == "weapon_fiveseven") then
 			return "pistol"
 			else
 			return "smg"
@@ -91,11 +92,18 @@ function AutoShoot(  )
 if( GetConVarNumber("royalhack_aim_autoshoot") != 1 ) then return end
 local firemode = GetWeaponMode(LocalPlayer())
 local target = GetTarget()
-	if( firemode == "smg" ) then
+	if( firemode == "pistol" ) then
 		if( target == true ) then
-		Msg("attack")
+			if fire and fire < CurTime() then
+			shot = true
+			RunConsoleCommand("+attack")
+			fire = CurTime() + (LocalPlayer():GetActiveWeapon():GetTable().Primary and LocalPlayer():GetActiveWeapon():GetTable().Primary.Delay or 0.1)
+		else
+			RunConsoleCommand("-attack")
+			shot = false
+			end
 		end
-	elseif( firemode == "pistol" ) then
+	elseif( firemode == "smg" ) then
 		if( target == true ) then
 			RunConsoleCommand("+attack")
 			
@@ -103,7 +111,10 @@ local target = GetTarget()
 			RunConsoleCommand("-attack")
 		end
 	end
-	
+		if( shot and !target ) then
+		shot = false
+		RunConsoleCommand("-attack")
+		end
 
 end
 hook.Add("Think","Autso",AutoShoot)
@@ -114,8 +125,6 @@ end
 function AntiAim( ply )
 
 end
-
-
 
 function RoyalHack.Aimbot(umc)
 		TargetPlayer = {}

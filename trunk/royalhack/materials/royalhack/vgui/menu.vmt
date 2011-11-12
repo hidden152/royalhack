@@ -1,0 +1,5 @@
+"UnlitGeneric"
+{
+	"$basetexture" "royalhack/vgui/menu"
+	"$translucent" 1
+}

@@ -603,30 +603,30 @@ utsaahbi.ttf
 utsaahi.ttf 
 Vani.ttf 
 Vanib.ttf 
-verdana.ttf 
-verdanab.ttf 
-verdanai.ttf 
-verdanaz.ttf 
-vga850.fon 
-vgafix.fon 
-vgasys.fon 
-vijaya.ttf 
-vijayab.ttf 
-VILNA.TTF 
-VILNAB.TTF 
-VINERITC.TTF 
-VIVALDII.TTF 
-VLADIMIR.TTF 
-vrinda.ttf 
-vrindab.ttf 
-webdings.ttf 
-wingding.ttf 
-WINGDNG2.TTF 
-WINGDNG3.TTF 
+v"erdana.ttf 
+"verdanab.ttf 
+"verdanai.ttf 
+"verdanaz.ttf 
+"vga850.fon 
+"vgafix.fon 
+"vgasys.fon 
+"vijaya.ttf 
+"vijayab.ttf 
+"VILNA.TTF 
+"VILNAB.TTF 
+"VINERITC.TTF 
+"VIVALDII.TTF 
+"VLADIMIR.TTF 
+"vrinda.ttf 
+"vrindab.ttf 
+"webdings.ttf 
+"wingding.ttf 
+"WINGDNG2.TTF 
+"WINGDNG3"
 
 */
 CreateClientConVar("ch_font_size",20,false,false) // default
-Font = {"Arial","Coolvetica","ACaslonPro-Bold","ACaslonPro-BoldItalic","ACaslonPro-BoldItalic","ACaslonPro-Italic","ACaslonPro-Regular","ACaslonPro-Semibold","ACaslonPro-SemiboldItalic","ADMUI3","AdobeArabic-Bold","AdobeArabic-Bold"}
+Font = {"Arial","Coolvetica","comic","times","GOTHIC","ACaslonPro-Bold","ACaslonPro-BoldItalic","ACaslonPro-BoldItalic","ACaslonPro-Italic","ACaslonPro-Regular","ACaslonPro-Semibold","ACaslonPro-SemiboldItalic","ADMUI3","AdobeArabic-Bold","AdobeArabic-Bold"}
 /*
 surface.CreateFont("arial", 20, 400, true, false, "Arial")
 surface.CreateFont ("coolvetica", 20, 400, true, false, "Coolvetica")

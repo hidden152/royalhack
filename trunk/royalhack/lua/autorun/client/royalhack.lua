@@ -1,5 +1,5 @@
 // RoyalHack Main
-
+Msg("\n==================================")
 //Basic Includes
 Msg("Royal Hack v 1.0\n")
 include("royalhack/basic/Config.lua")
@@ -13,4 +13,4 @@ for k,v in ipairs(filename) do
 		Msg("\n"..v.." was loaded")
 end
 
-Msg("\n-----------------------------------")
+Msg("\n==================================")

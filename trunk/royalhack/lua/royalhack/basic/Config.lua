@@ -14,6 +14,7 @@ Cheat_TeamIV = Color(0,0,255,255)
 Cheat_EnemyV = Color(255,0,0,255)
 Cheat_EnemyIV = Color(255,255,0,255)
 Kills = 0
+fire = 0
 timer.Create("Kill",3,1,function()
 
 Kills = LocalPlayer():Frags()
