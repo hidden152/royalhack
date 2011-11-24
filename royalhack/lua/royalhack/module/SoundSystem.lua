@@ -243,16 +243,3 @@ if(LocalPlayer():Alive()) then
 hook.Add("Think","sound",RoyalHack.SoundSystem)
 
 
-
-concommand.Add("royalhack_misc_resetsounds",ResetAllSounds)
-
-function ResetSound( sound )
-
-if( sound == false ) then
-	Msg("sound is currently activated\n")
-end
-if( sound != false ) then
-	sound = false
-end
-
-end

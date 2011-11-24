@@ -31,7 +31,8 @@ elseif(GetConVarNumber("royalhack_esp_bone") == 1) then
 		if b == LocalPlayer() then
 			Msg("")
 else
-if(!b:IsValid()) then return end
+if(!b:IsValid()) then
+else
 			if( b:Alive() ) then
 			if(!RoyalHack.IsVisible(b) and (GetConVarNumber("royalhack_esp_enemysonly") == 0) ) then
 			
@@ -41,7 +42,7 @@ if(!b:IsValid()) then return end
 		surface.SetDrawColor(Cheat_EnemyV)
         surface.DrawLine( pos1.x, pos1.y, pos2.x, pos2.y )
     end
-	end
+end
 			if(RoyalHack.IsVisible(b) and (GetConVarNumber("royalhack_esp_enemysonly") == 0)) then
 			
     for k,v in ipairs( BONES ) do
@@ -49,19 +50,20 @@ if(!b:IsValid()) then return end
         pos2 = GetBoneScreenPos( b, v[2] )
 		surface.SetDrawColor(Cheat_EnemyIV)
         surface.DrawLine( pos1.x, pos1.y, pos2.x, pos2.y )
+						end
 					end
 				end
 			end
 		end
 	end
 end
-
 	
 	for _, c in pairs(Friends) do
 		if c == LocalPlayer() then
 			Msg("")
 else
-			if(!e:IsValid()) then return end
+			if(!c:IsValid()) then 
+			else
 			if(!RoyalHack.IsVisible(c) and (GetConVarNumber("royalhack_esp_enemysonly") == 0) and c:IsValid()) then
 		
     for k,v in ipairs( BONES ) do
@@ -82,6 +84,6 @@ else
 				end
 			end
 		end
-
+	end
 
 hook.Add("HUDPaint","BE",DrawSkeleton)

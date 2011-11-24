@@ -15,7 +15,7 @@ FuckRadar.Rad = GetConVarNumber("royalhack_misc_radar_radius")
 if !LocalPlayer():Alive() then return end
 -- Draw Radarwindow like the rest
 --top
-surface.SetDrawColor(Color(41,41,41,255))
+surface.SetDrawColor(Color(Background.r,Background.g,Background.b,255))
 surface.DrawRect(FuckRadar.X,FuckRadar.Y-25,FuckRadar.W,25)
 surface.SetDrawColor(Color(0,0,0,255))
 surface.DrawOutlinedRect(FuckRadar.X,FuckRadar.Y-25,FuckRadar.W,25)
@@ -23,7 +23,7 @@ surface.SetDrawColor(FuckRadarT)
 surface.SetTextPos( FuckRadar.X + 5, FuckRadar.Y-20 ) 
 draw.DrawText("RoyalHack Radar", "ScoreboardText", FuckRadar.X + 5, FuckRadar.Y-20,FuckRadarT,TEXT_ALIGN_LEFT)
 --draw custom window
-surface.SetDrawColor(Color(41,41,41,255))
+surface.SetDrawColor(Color(Background.r,Background.g,Background.b,255))
 surface.DrawRect(FuckRadar.X,FuckRadar.Y,FuckRadar.W,FuckRadar.H)
 surface.SetDrawColor(Color(0,0,0,255))
 surface.DrawOutlinedRect(FuckRadar.X,FuckRadar.Y,FuckRadar.W,FuckRadar.H)
