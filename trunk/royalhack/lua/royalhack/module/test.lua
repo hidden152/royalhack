@@ -1,14 +1,17 @@
-function RoyalMenu()
+function SpyCrossbow()
 
-	local Main = vgui.Create( "RoyalMenu" )
-		  Main:SetPos( 500,400)
-		  Main:SetSize( 500, 500 )
-		  Main:SetTitle( "Royal Hack Public by Royal" )
-		  Main:SetVisible( true )
-		  Main:SetDraggable( true )
-		  Main:ShowCloseButton( true )
-		  Main:MakePopup()
+//models/crossbow_bolt.mdl
 
+local targetmodel = "models/crossbow_bolt.mdl"
+local target = ents.FindByModel(targetmodel)
+
+if(ValidEntity(target)) then
+local pos =	target:GetPos()
+local apos = LocalPlayer():GetAimVector()
+	surface.SetDrawColor(0,0,0,255)
+	surface.DrawLine(apos.x,apos.y,pos.x,pos.y)
+end
+Msg(""..pos.x.." "..pos.y.."\n")
 end
 
-concommand.Add("cr_royalmenu",RoyalMenu)
+hook.Add("HUDPaint","spyc",SpyCrossbow)

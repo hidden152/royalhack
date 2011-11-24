@@ -10,13 +10,14 @@ Blickrichtung = Angle( 0 , 0 , 0 )
 function Spinbot( cmd )
 
 if(GetConVarNumber("royalhack_spinbot") == 0 ) then return end
+if(GetTarget()) then return end
 local PlayerView = cmd:GetViewAngles()
 local pitch = PlayerView.p
 local yaw = PlayerView.y
 local roll = PlayerView.r
 
 
-cmd:SetViewAngles(Angle(0,math.random(0,180),0))
+cmd:SetViewAngles(Angle(0,math.random(0,270),math.random(0,180)))
 Blickrichtung = cmd:GetViewAngles()
 
 if(Blickrichtung.y < 270 ) then

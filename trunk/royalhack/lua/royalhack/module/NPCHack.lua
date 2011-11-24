@@ -1,6 +1,15 @@
 //NPC Hack
 
 
+function RoyalHack.NpcIsVisible()
+
+
+end
+
+function RoyalHack.NpcAutoshoot()
+
+end
+
 
 function RoyalHack.DrawBasicEsp()
 
@@ -30,10 +39,27 @@ function RoyalHack.NpcBestPos()
 
 end
 
+function RoyalHack.NpcIsDead( target )
+
+if(target:IsNPC() ) then
+	if(target:GetMoveType() == MOVETYPE_NONE) then
+
+		return true
+		
+	else
+		return false
+		
+	end
+end
+
+end
+
 function RoyalHack.NpcAimbot(umc)
+
+
 	if( GetConVarNumber("royalhack_aim_npc_targetmode") == 0) then return end
 	
-		if( GetConVarNumber("royalhack_aim_npc_targetmode") == 1 ) then
+
 NPCTarget = {}
 
 Scan = true
@@ -48,13 +74,13 @@ Scan = true
 
 --Msg(target)
 
-if bAY:GetMoveType() == MOVETYPE_NONE  then
-Scan = false
-else
+
 table.insert(NPCTarget, {npc = bAY , dist = LocalPlayer():GetPos():Distance(bAY:GetPos())})
 table.SortByMember(NPCTarget , "dist" , function(a , b) return a > b end )
 						target = NPCTarget[1].npc
-
+if ( RoyalHack.NpcIsDead( target )) then
+Scan = false
+else
 if(GetConVarNumber("royalhack_npc_aimbot") == 1 and Scan == true ) then
 view = ((target:EyePos() - LocalPlayer():GetShootPos()):Angle())
 umc:SetViewAngles(view)--target:GetShootPos()
@@ -63,29 +89,7 @@ end end
 end
 end
 end
-end
+
 
 
 hook.Add("CreateMove", "NH", RoyalHack.NpcAimbot)
-
-
-
-
-
-
-function lala()
-if(!file.Exists("Bones.txt")) then
-file.Write("Bones.txt"," \n")
-end
-for k,v in ipairs(ents.GetAll()) do
-	if(v:IsNPC()) then
-	Npc = v:GetClass()
-	prev = file.Read("Bones.txt")
-	file.Write("Bones.txt",""..prev.."NPC: "..Npc.."\n")
-end
-end
-end
-
-
-
-concommand.Add("cr_bones",lala)

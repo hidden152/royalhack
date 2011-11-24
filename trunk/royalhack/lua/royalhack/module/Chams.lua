@@ -24,6 +24,7 @@ return true
 	if(e == nil ) then
 	local losttarget = true
 	end
+	if(!e:IsValid()) then return end
 	if(losttarget == false) then
 		if ( e:Alive() ) then
 			cam.Start3D( EyePos(), EyeAngles() )
@@ -58,6 +59,7 @@ end
 		if(e == nil ) then
 	local losttarget = true
 	end
+	if(!e:IsValid()) then return end
 if(losttarget == false) then
 	if ( e:Alive() ) then
 			cam.Start3D( EyePos(), EyeAngles() )
