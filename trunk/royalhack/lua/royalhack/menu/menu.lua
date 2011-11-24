@@ -5,7 +5,7 @@ function SimpleMenu()
 
 	local MainFrame = vgui.Create( "RoyalFrame" )
 		  MainFrame:SetPos( 500,400)
-		  MainFrame:SetSize( 500, 500 )
+		  MainFrame:SetSize( 510, 500 )
 		  MainFrame:SetTitle( "Royal Hack Public by Royal" )
 		  MainFrame:SetVisible( true )
 		  MainFrame:SetDraggable( true )
@@ -26,11 +26,11 @@ function SimpleMenu()
 		  
 	local Reiter = vgui.Create( "DPropertySheet",MainFrame)
 		  Reiter:SetPos( 5, 30 )
-		  Reiter:SetSize( 490, 465 )
+		  Reiter:SetSize( 500, 465 )
 		  
 	local Aimbot = vgui.Create( "DPanelList" )
 		  Aimbot:SetPos( 25, 50 )
-		  Aimbot:SetSize( 490, 465 )
+		  Aimbot:SetSize( 500, 465 )
 		  Aimbot:EnableHorizontal( false ) 
 		  Aimbot:EnableVerticalScrollbar( false )
 		  
@@ -40,6 +40,20 @@ function SimpleMenu()
 		  Check1:SetConVar( "royalhack_aimbot" )
 		  Check1:SetValue( GetConVarNumber("royalhack_aimbot") )
 		  Check1:SizeToContents()
+
+	local Checks = vgui.Create( "DCheckBoxLabel" )
+		  Checks:SetPos( 10, 40 )
+		  Checks:SetText( "AimKey" )
+		  Checks:SetConVar( "royalhack_aim_aimkey" )
+		  Checks:SetValue( GetConVarNumber("royalhack_aim_aimkey") )
+		  Checks:SizeToContents() 
+
+	local Checks1 = vgui.Create( "DCheckBoxLabel" )
+		  Checks1:SetPos( 10, 40 )
+		  Checks1:SetText( "Autoshoot" )
+		  Checks1:SetConVar( "royalhack_aim_autoshoot" )
+		  Checks1:SetValue( GetConVarNumber("royalhack_aim_autoshoot") )
+		  Checks1:SizeToContents() 
 
 	local Check2 = vgui.Create( "DCheckBoxLabel" )
 		  Check2:SetPos( 10, 20 )
@@ -93,6 +107,8 @@ function SimpleMenu()
 		  Aimbot:AddItem( Check2 )
 		  Aimbot:AddItem( Check3 )
 		  Aimbot:AddItem( Check4 )
+		  Aimbot:AddItem( Checks )
+		  Aimbot:AddItem( Checks1)
 		  Aimbot:AddItem( Slide1 )
 		  Aimbot:AddItem( Slide2 )
 		  Aimbot:AddItem( Slide3 )
@@ -101,7 +117,7 @@ function SimpleMenu()
 		  
 	local Esp = vgui.Create( "DPanelList" )
 		  Esp:SetPos( 25, 50 )
-		  Esp:SetSize( 490, 465  )
+		  Esp:SetSize( 500, 465  )
 		  Esp:EnableHorizontal( false ) 
 		  Esp:EnableVerticalScrollbar( false )	
 
@@ -221,6 +237,12 @@ function SimpleMenu()
 		end
 	end
 end
+		local Multi1 = vgui.Create( "DMultiChoice" )
+		Multi1:SetSize( 100, 20 )
+		Multi1:SetConVar( "royalhack_esp_font" )
+		for k,fonts in ipairs(Font) do
+		Multi1:AddChoice(fonts)
+		end
 
 		  Esp:AddItem( Check5 )
 		  Esp:AddItem( Check6 )
@@ -235,6 +257,7 @@ end
 		  Esp:AddItem( Check13 )
 		  Esp:AddItem( Check14 )
 		  Esp:AddItem( Multi )
+		  Esp:AddItem( Multi1 )
 		  Esp:AddItem( colorCircle )
 		  
 	Reiter:AddSheet( "ESP", Esp, "gui/silkicons/user", false, false, "Esp Settings" )	 
@@ -249,6 +272,20 @@ end
 		  Check15:SetConVar( "royalhack_misc_radar_on" )
 		  Check15:SetValue( GetConVarNumber("royalhack_misc_radar_on") )
 		  Check15:SizeToContents()
+
+		  	local Check23 = vgui.Create( "DCheckBoxLabel" )
+		  Check23:SetPos( 10, 10 )
+		  Check23:SetText( "Remove Sky" )
+		  Check23:SetConVar( "royalhack_misc_sky" )
+		  Check23:SetValue( GetConVarNumber("royalhack_misc_sky") )
+		  Check23:SizeToContents()
+
+		  	local Check22 = vgui.Create( "DCheckBoxLabel" )
+		  Check22:SetPos( 10, 10 )
+		  Check22:SetText( "Stats Box" )
+		  Check22:SetConVar( "royalhack_misc_stats" )
+		  Check22:SetValue( GetConVarNumber("royalhack_misc_stats") )
+		  Check22:SizeToContents()
 	
 		local Slide6 = vgui.Create( "DNumSlider" )
 		  Slide6:SetPos( 10, 30 )
@@ -280,11 +317,11 @@ end
 		local Slide9 = vgui.Create( "DNumSlider" )
 		  Slide9:SetPos( 10, 90 )
 		  Slide9:SetSize( 150, 50 )
-		  Slide9:SetText( "winkel" )
+		  Slide9:SetText( "Radar Y" )
 		  Slide9:SetMin( 0 )
 		  Slide9:SetMax( ScrH() )
 		  Slide9:SetDecimals( 0 )
-		  Slide9:SetConVar( "cr_winkel" )
+		  Slide9:SetConVar( "royalhack_misc_radar_y" )
 		  
 		local Slide10 = vgui.Create( "DNumSlider" )
 		  Slide10:SetPos( 10, 110 )
@@ -314,7 +351,36 @@ end
 		  Check18:SetText( "Print Killmessage Serverside" )
 		  Check18:SetConVar("royalhack_misc_killmessage_server")
 		  Check18:SetValue( GetConVarNumber("royalhack_misc_killmessage_server") )
-		  Check18:SizeToContents()		  
+		  Check18:SizeToContents()		
+		  
+		  	local Check19 = vgui.Create( "DCheckBoxLabel" )
+		  Check19:SetPos( 10, 170 )
+		  Check19:SetText( "Quake Sounds" )
+		  Check19:SetConVar("royalhack_sound_quake")
+		  Check19:SetValue( GetConVarNumber("royalhack_sound_quake") )
+		  Check19:SizeToContents()
+		  
+		  	local Check20 = vgui.Create( "DCheckBoxLabel" )
+		  Check20:SetPos( 10, 170 )
+		  Check20:SetText( "Print Quake Sounds Clientside" )
+		  Check20:SetConVar("royalhack_sound_quake_chatprint")
+		  Check20:SetValue( GetConVarNumber("royalhack_sound_quake_chatprint") )
+		  Check20:SizeToContents()
+		  
+		  	local Check21 = vgui.Create( "DCheckBoxLabel" )
+		  Check21:SetPos( 10, 170 )
+		  Check21:SetText( "Print Quake HudText" )
+		  Check21:SetConVar("royalhack_sound_quake_hudtext")
+		  Check21:SetValue( GetConVarNumber("royalhack_sound_quake_hudtext") )
+		  Check21:SizeToContents()  
+
+			local Multi3 = vgui.Create( "DMultiChoice" )
+		Multi3:SetSize( 100, 20 )
+		Multi3:SetConVar( "royalhack_sound_quake_path" )
+		Multi3:AddChoice("new")
+		Multi3:AddChoice("female")
+		Multi3:AddChoice("german")
+		Multi3:AddChoice("dark")
 		  
 	local textbox = vgui.Create("DTextEntry")
 		  textbox:SetMultiline(false)
@@ -328,6 +394,8 @@ end
 		  Reiter:AddSheet( "Misc", Misc, "gui/silkicons/user", false, false, "Misc Settings" )
 
 		   Misc:AddItem( Check15 )
+		   Misc:AddItem( Check22 )
+		  Misc:AddItem( Check23 )
 		  Misc:AddItem( Slide6 )
 		  Misc:AddItem( Slide7 )
 		  Misc:AddItem( Slide8 )
@@ -336,11 +404,17 @@ end
 		  Misc:AddItem( Check16 )
 		  Misc:AddItem( Check17 )
 		  Misc:AddItem( Check18 )
+		  Misc:AddItem( Check19 )
+		  Misc:AddItem( Check20 )
+		  Misc:AddItem( Check21 )
+		  Misc:AddItem( Multi3 )
 	Misc:AddItem( textbox )
 	
 	 local Targets = vgui.Create( "DPanelList" )
 		Targets:SetPos( 25, 50 )
 		 Targets:SetSize( 250, 250 ) 
+		 Targets:EnableHorizontal( false )
+		Targets:EnableVerticalScrollbar( true )
 		 Targets:SetSpacing( 5 )
 		  
 		  			local List = vgui.Create( "DPanelList" )
@@ -349,7 +423,7 @@ end
 			  List:SetSpacing( 5 )
 			  List:EnableHorizontal( false )
 			  List:EnableVerticalScrollbar( true )
-			  Targets:AddItem( List)
+			
 
 	local List1 = vgui.Create( "DPanelList")
 			  List1:SetPos( 235,25 )
@@ -357,10 +431,11 @@ end
 			  List1:SetSpacing( 5 ) 
 			  List1:EnableHorizontal( false )
 			  List1:EnableVerticalScrollbar( true )
-			  Targets:AddItem(List1 )
+			 
 
 				for k,v in ipairs(player.GetAll()) do
-
+				if(!v:IsValid()) then
+				else
 					a = vgui.Create("DOption")
 					a:SetPos(10,10)
 					a:SetSize(50,100)
@@ -415,11 +490,12 @@ end
 								Menu:Open()
 		end
 	end
-
+end
 
 
 					for o,l in ipairs(Friends) do
-
+					if(l:IsValid()) then
+					else
 						local v = vgui.Create("DOption")
 							  v:SetSize(200,100)
 							  v:TextSize(l:GetName())
@@ -437,9 +513,10 @@ end
 											Menu:Open()
 									end
 						end
-	
+	end
 					for f,g in ipairs(Enemys) do
-
+					if(!g:IsValid()) then
+					else
 						local a = vgui.Create("DOption")
 							  a:SetSize(200,100)
 							  a:TextSize(g:GetName())
@@ -456,7 +533,7 @@ end
 											Menu:Open()
 									end
 						end
-
+end
 		  Reiter:AddSheet( "Targets", Targets, "gui/silkicons/user", false, false, "Target Settings" )
 		  Reiter:AddSheet( "Friends", List, "gui/silkicons/user", false, false, "Friends List" )
 		  Reiter:AddSheet( "Enemys", List1, "gui/silkicons/user", false, false, "Enemys List" )
@@ -489,21 +566,31 @@ end
 end
 	Settings:AddItem(Colo)
 
-		    Reiter:AddSheet( "Settings", Settings, "gui/silkicons/user", false, false, "Settings" )
-		 /*
-		 
+			local Multi2 = vgui.Create( "DMultiChoice" )
+		Multi2:SetSize( 100, 20 )
+		Multi2:SetConVar( "royalhack_menu_colormod" )
+		Multi2:AddChoice("Background")
+		Settings:AddItem(Multi2)
 
-CreateConVar("royalhack_misc_killmessage",0,true,false)
-CreateConVar("royalhack_misc_killmessage_client",1,true,false)
-CreateConVar("royalhack_misc_killmessage_server",1,true,false)
-CreateConVar("royalhack_misc_killmessage_text","|Royal| killed you nub!",true, false)
-CreateConVar("royalhack_misc_sky",1,true,false)
-CreateConVar("royalhack_sound_quake",1,true,false)
-CreateConVar("royalhack_sound_quake_path","new",true,false)
-CreateConVar("royalhack_sound_quake_hudtext",1,true,false)
-CreateConVar("royalhack_sound_quake_chatprint",1,true,false)
-		 
+		 local Slides = vgui.Create( "DNumSlider" )
+		  Slides:SetPos( 10, 50 )
+		  Slides:SetSize( 150, 50 )
+		  Slides:SetText( "Crosshair" )
+		  Slides:SetMin( 0 )
+		  Slides:SetMax( 5 )
+		  Slides:SetDecimals( 0 )
+		  Slides:SetConVar( "royalhack_esp_crosshair" )
+		  Settings:AddItem(Slides)
+		    Reiter:AddSheet( "Settings", Settings, "gui/silkicons/user", false, false, "Settings" )
+
+		/*  local Credits = vgui.Create( "DPanelList" )
+		Credits:SetPos( 25, 50 )
+		 Credits:SetSize( 250, 250 ) 
+		 Credits:EnableHorizontal( false )
+		Credits:EnableVerticalScrollbar( true )
+		 Credits:SetSpacing( 5 )
 		 */
+		-- Reiter:AddSheet( "Credits", Credits, "gui/silkicons/user", false, false, "Credits" )
  
 	-- local Settings = vgui.Create( "DPanel" )
 		  -- Settings:SetPos( 25, 50 )

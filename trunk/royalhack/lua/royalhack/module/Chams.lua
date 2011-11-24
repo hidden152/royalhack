@@ -24,7 +24,8 @@ return true
 	if(e == nil ) then
 	local losttarget = true
 	end
-	if(!e:IsValid()) then return end
+	if(!e:IsValid()) then 
+	else
 	if(losttarget == false) then
 		if ( e:Alive() ) then
 			cam.Start3D( EyePos(), EyeAngles() )
@@ -55,11 +56,13 @@ return true
 		SetMaterialOverride( nil )
 	end
 end
+end
 	for k,e in ipairs( Friends ) do
 		if(e == nil ) then
 	local losttarget = true
 	end
-	if(!e:IsValid()) then return end
+	if(!e:IsValid()) then
+	else
 if(losttarget == false) then
 	if ( e:Alive() ) then
 			cam.Start3D( EyePos(), EyeAngles() )
@@ -90,7 +93,7 @@ if(losttarget == false) then
 SetMaterialOverride( nil )
 	end
 end
-
+end
 timer.Create("fix",1,1,function()
 hook.Add("RenderScreenspaceEffects","re",RoyalHack.Chams)
 end)
