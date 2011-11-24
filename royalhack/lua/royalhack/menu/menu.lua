@@ -11,6 +11,18 @@ function SimpleMenu()
 		  MainFrame:SetDraggable( true )
 		  MainFrame:ShowCloseButton( true )
 		  MainFrame:MakePopup()
+		function MainFrame:Paint()
+
+	surface.SetDrawColor(Background.r,Background.g,Background.b,255)
+	surface.DrawRect(0,0,self:GetWide(),self:GetTall())
+	surface.SetDrawColor(0,0,0,255)
+	surface.DrawOutlinedRect(0,0,self:GetWide(),self:GetTall())
+	surface.SetDrawColor(Background.r,Background.g,Background.b,255)
+	surface.DrawRect(0,0,self:GetWide(),21)
+	surface.SetDrawColor(0,0,0,255)
+	surface.DrawOutlinedRect(0,0,self:GetWide(),21)
+
+		end
 		  
 	local Reiter = vgui.Create( "DPropertySheet",MainFrame)
 		  Reiter:SetPos( 5, 30 )
@@ -268,11 +280,11 @@ end
 		local Slide9 = vgui.Create( "DNumSlider" )
 		  Slide9:SetPos( 10, 90 )
 		  Slide9:SetSize( 150, 50 )
-		  Slide9:SetText( "Radar Y" )
+		  Slide9:SetText( "winkel" )
 		  Slide9:SetMin( 0 )
 		  Slide9:SetMax( ScrH() )
 		  Slide9:SetDecimals( 0 )
-		  Slide9:SetConVar( "royalhack_misc_radar_y" )
+		  Slide9:SetConVar( "cr_winkel" )
 		  
 		local Slide10 = vgui.Create( "DNumSlider" )
 		  Slide10:SetPos( 10, 110 )
@@ -312,7 +324,9 @@ end
 		  textbox.OnEnter = function()
 			RunConsoleCommand("royalhack_misc_killmessage_text",textbox:GetValue())
 		end
-		  
+		
+		  Reiter:AddSheet( "Misc", Misc, "gui/silkicons/user", false, false, "Misc Settings" )
+
 		   Misc:AddItem( Check15 )
 		  Misc:AddItem( Slide6 )
 		  Misc:AddItem( Slide7 )
@@ -323,15 +337,159 @@ end
 		  Misc:AddItem( Check17 )
 		  Misc:AddItem( Check18 )
 	Misc:AddItem( textbox )
-		  -- Misc:AddItem( Check11 )
-		  -- Misc:AddItem( Slide4 )
-		  -- Esp:AddItem( Slide5 )
-		  -- Esp:AddItem( Check12 )
-		  -- Esp:AddItem( Check13 )
-		  -- Esp:AddItem( Check14 )
-		  -- Esp:AddItem( Multi )
+	
+	 local Targets = vgui.Create( "DPanelList" )
+		Targets:SetPos( 25, 50 )
+		 Targets:SetSize( 250, 250 ) 
+		 Targets:SetSpacing( 5 )
 		  
-Reiter:AddSheet( "Misc", Misc, "gui/silkicons/user", false, false, "Misc Settings" )
+		  			local List = vgui.Create( "DPanelList" )
+			  List:SetPos( 25,25 )
+			  List:SetSize( 200, 200 )
+			  List:SetSpacing( 5 )
+			  List:EnableHorizontal( false )
+			  List:EnableVerticalScrollbar( true )
+			  Targets:AddItem( List)
+
+	local List1 = vgui.Create( "DPanelList")
+			  List1:SetPos( 235,25 )
+			  List1:SetSize( 200, 200 )
+			  List1:SetSpacing( 5 ) 
+			  List1:EnableHorizontal( false )
+			  List1:EnableVerticalScrollbar( true )
+			  Targets:AddItem(List1 )
+
+				for k,v in ipairs(player.GetAll()) do
+
+					a = vgui.Create("DOption")
+					a:SetPos(10,10)
+					a:SetSize(50,100)
+					a:TextSize(v:GetName())
+					a:SetImage(v)
+					a:Name( v:GetName()	)
+					a:SteamId(v:SteamID())
+					a:SizeToContents()
+						Targets:AddItem( a )
+	
+							a.DoRightClick = function()
+		
+								local Menu = DermaMenu() 
+									local sub = Menu:AddSubMenu("Add to" )
+												sub:AddOption("Friend",function() AddFriend(v) List:Clear()	for o,l in ipairs(Friends) do
+
+						local v = vgui.Create("DOption")
+							  v:SetSize(200,100)
+							  v:TextSize(l:GetName())
+							  v:SetImage(l)
+							  v:Name( l:GetName()	)
+							  v:SteamId(l:SteamID())
+							  v:SizeToContents()
+									List:AddItem( v )
+	
+										v.DoRightClick = function()
+		
+											local Menu = DermaMenu() 
+													local sub = Menu:AddOption("Delete",function() v:Close() DeleteFriend(table.KeyFromValue(Friends,l)) end )
+
+											Menu:Open()
+									end
+						end end)
+												sub:AddOption("Enemy",function() AddEnemy(v) List1:Clear() for f,g in ipairs(Enemys) do
+
+						local a = vgui.Create("DOption")
+							  a:SetSize(200,100)
+							  a:TextSize(g:GetName())
+							  a:SetImage(g)
+							  a:Name( g:GetName() )
+							  a:SteamId(g:SteamID())
+							  a:SizeToContents()
+									List1:AddItem( a )
+	
+										a.DoRightClick = function()
+		
+											local Menu = DermaMenu() 
+													local sub = Menu:AddSubMenu("Delete",function() a:Close() DeleteEnemy(table.KeyFromValue(Enemys,g)) end )
+											Menu:Open()
+									end
+						end end)
+								Menu:Open()
+		end
+	end
+
+
+
+					for o,l in ipairs(Friends) do
+
+						local v = vgui.Create("DOption")
+							  v:SetSize(200,100)
+							  v:TextSize(l:GetName())
+							  v:SetImage(l)
+							  v:Name( l:GetName()	)
+							  v:SteamId(l:SteamID())
+							  v:SizeToContents()
+									List:AddItem( v )
+	
+										v.DoRightClick = function()
+		
+											local Menu = DermaMenu() 
+													local sub = Menu:AddOption("Delete",function() v:Close() DeleteFriend(table.KeyFromValue(Friends,l)) end )
+
+											Menu:Open()
+									end
+						end
+	
+					for f,g in ipairs(Enemys) do
+
+						local a = vgui.Create("DOption")
+							  a:SetSize(200,100)
+							  a:TextSize(g:GetName())
+							  a:SetImage(g)
+							  a:Name( g:GetName() )
+							  a:SteamId(g:SteamID())
+							  a:SizeToContents()
+									List1:AddItem( a )
+	
+										a.DoRightClick = function()
+		
+											local Menu = DermaMenu() 
+													local sub = Menu:AddSubMenu("Delete",function() a:Close() DeleteEnemy(table.KeyFromValue(Enemys,g)) end )
+											Menu:Open()
+									end
+						end
+
+		  Reiter:AddSheet( "Targets", Targets, "gui/silkicons/user", false, false, "Target Settings" )
+		  Reiter:AddSheet( "Friends", List, "gui/silkicons/user", false, false, "Friends List" )
+		  Reiter:AddSheet( "Enemys", List1, "gui/silkicons/user", false, false, "Enemys List" )
+		  
+		  	  local Settings = vgui.Create( "DPanelList" )
+			Settings:SetPos( 25, 50 )
+			 Settings:SetSize( 250, 250 ) 
+			  Settings:SetSpacing( 5 )
+			  Settings:EnableHorizontal( false )
+			  Settings:EnableVerticalScrollbar( true )
+
+	  local Colo = vgui.Create("DColorMixer")
+		  Colo:SetPos( 10, 30 )
+		  Colo:SetSize(250,250)
+		  Colo.PaintOver = function()
+		  Colo.a = 255 - (Colo.AlphaBar:GetSlideY() * 255)
+	if( Colo:GetColor() == nil ) then return false
+	
+	else
+		if(GetConVarString("royalhack_menu_colormod") == "Background") then
+		Background = Color(Colo:GetColor().r,Colo:GetColor().g,Colo:GetColor().b,Colo.a)
+		elseif(GetConVarString("royalhack_menu_colormod") == "Label") then
+		Labels = Color(Colo:GetColor().r,Colo:GetColor().g,Colo:GetColor().b,Colo.a)
+		elseif(GetConVarString("royalhack_menu_colormod") == "Button") then
+		Buttons = Color(Colo:GetColor().r,Colo:GetColor().g,Colo:GetColor().b,Colo.a)
+		elseif(GetConVarString("royalhack_menu_colormod") == "Tab") then
+		Tab = Color(Colo:GetRGB().r,Colo:GetColor().g,Colo:GetRGB().b,GetColor,Colo.a)
+		end
+	end
+end
+	Settings:AddItem(Colo)
+
+		    Reiter:AddSheet( "Settings", Settings, "gui/silkicons/user", false, false, "Settings" )
 		 /*
 		 
 

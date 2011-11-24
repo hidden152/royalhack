@@ -31,6 +31,7 @@ elseif(GetConVarNumber("royalhack_esp_bone") == 1) then
 		if b == LocalPlayer() then
 			Msg("")
 else
+if(!b:IsValid()) then return end
 			if( b:Alive() ) then
 			if(!RoyalHack.IsVisible(b) and (GetConVarNumber("royalhack_esp_enemysonly") == 0) ) then
 			
@@ -60,7 +61,7 @@ end
 		if c == LocalPlayer() then
 			Msg("")
 else
-			
+			if(!e:IsValid()) then return end
 			if(!RoyalHack.IsVisible(c) and (GetConVarNumber("royalhack_esp_enemysonly") == 0) and c:IsValid()) then
 		
     for k,v in ipairs( BONES ) do

@@ -11,15 +11,24 @@ function GetWeaponMode( ply )
 
 	if(ValidEntity(ply)) then
 		if(PlayerholdWeapon(ply)) then
-			if(ply:GetActiveWeapon():GetClass() == "weapon_pistol" or ply:GetActiveWeapon():GetClass() == "weapon_deagle" or ply:GetActiveWeapon():GetClass() == "weapon_rpg" or ply:GetActiveWeapon():GetClass() == "weapon_glock" or ply:GetActiveWeapon():GetClass() == "weapon_fiveseven") then
+			for k,v in ipairs(Pistols) do
+			if(ply:GetActiveWeapon():GetClass() == v ) then
 			return "pistol"
-			else
+			end
+			end
+			for k,v in ipairs(Smg) do
+			if(ply:GetActiveWeapon():GetClass() == v ) then
 			return "smg"
+			end
+			end
+			for k,v in ipairs(Misc) do
+			if(ply:GetActiveWeapon():GetClass() == v ) then
+			return "misc"
+			end
 			end
 		end
 	end	
 end
-
 
 
 
@@ -52,21 +61,6 @@ end
 end
 
 
--- function AimOnFire( ply ) 
-
-	-- if( GetConVarNumber("royalhack_aim_targetmode") == 1 ) then
-		-- if( PlayerholdWeapon( ply ) ) then
-			-- if( !IsReload(ply) ) then
-				-- if( ply:KeyDown(Key(GetConVarNumber("royalhack_aim_key")) )) then
-				-- return true
-				-- else
-				-- return false
-				-- end
-			-- end
-		-- end
-	-- end
--- end
-
 function FOV(ply,target)
 
  -- fov = GetConVarNumber("royalhack_aim_fov")
@@ -79,10 +73,35 @@ function FOV(ply,target)
 	-- end
 end
 
-function AimPrediction( weapon )
+function PredictTarget( target )
+
+local pos = (PerfectTarget(target))
+	if (ValidEntity(target) and type(target:GetVelocity()) == "Vector" and target:GetPos() and type(target:GetPos()) == "Vector") then
+		local distance = LocalPlayer():GetPos():Distance(target:GetPos())
+		local weapon = (LocalPlayer().GetActiveWeapon and (ValidEntity(LocalPlayer():GetActiveWeapon()) and LocalPlayer():GetActiveWeapon():GetClass()))
+		
+			local time = distance / 3110
+			return pos + target:GetVelocity() * time
+			end
+		if(GetConVarNumber("royalhack_aim_PredictTarget") == 1) then
+			
+			if LocalPlayer():GetVelocity():Length() > 100 then
+				pos = pos - Vector(0 , 0 , LocalPlayer():GetVelocity():Length() / 250)
+			end
+			
+			return pos + target:GetVelocity() * 0.0087 - LocalPlayer():GetVelocity() * 0.0087 -- ( pl:GetVelocity() / 47 - LocalPlayer():GetVelocity() / 47 )--+ ( pl.GetVelocity and pl:GetVelocity() * 0.0025 * LocalPlayer():Ping() )
+			
+			end
+	
+		return pos
+		
+	end
+
+	
 
 
-end
+
+
 
 function HoldTarget( target )
 
@@ -168,6 +187,7 @@ end
 
 if(GetConVarNumber("royalhack_aimbot") == 1 and IsReload(LocalPlayer()) == false and losttarget == false ) then
 Opfer = true
+
 local maxangle = (PerfectTarget(target) - LocalPlayer():GetShootPos()):Angle()
 	if(GetConVarNumber("royalhack_aim_aimkey") == 1  and LocalPlayer():KeyDown(IN_ATTACK)) then
 		view1 = ((PerfectTarget(target) - LocalPlayer():GetShootPos()):Angle())

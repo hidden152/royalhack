@@ -12,7 +12,7 @@ AccessorFunc( PANEL, "m_bDeleteOnClose", 	"DeleteOnClose", 	FORCE_BOOL )
 
 function PANEL:Init()
 
-self.PlayerImage = vgui.Create( "DImage", self)
+self.PlayerImage = vgui.Create( "AvatarImage", self)
 self.PlayerName = vgui.Create("DLabel", self )
 self.PlayerSteamId = vgui.Create("DLabel", self )
 -- self.HealthBar = vgui.Create("ProgressBar",self)
@@ -162,12 +162,13 @@ end
 function PANEL:PerformLayout( )
 
 self.PlayerImage:SetPos( 5,5 )
-self.PlayerImage:SetSize( 50,self:GetTall()-10 )
+self.PlayerImage:SetSize( 100,self:GetTall()-10 )
 self.PlayerName:SetPos((( self:GetWide()/2 ) + self.StringSize/8 ), 5 )
 self.PlayerName:SetSize(self.StringSize,10)
 self.PlayerName:SetColor(Color(255,0,0,255))
 self.PlayerSteamId:SetPos(((self:GetWide()/2)+self.StringSize/10),15)
 self.PlayerSteamId:SetColor(Color(255,0,0,255))
+self.PlayerSteamId:SetSize(200,10)
 -- self.HealthBar:SetPos(((self:GetWide()/2)),25)
 		
 end

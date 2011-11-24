@@ -1,18 +1,34 @@
-RoyalHack = {}
-// Constants
+/*
+
+ ______     ______     __  __     ______     __            __  __     ______     ______     __  __
+/\  == \   /\  __ \   /\ \_\ \   /\  __ \   /\ \          /\ \_\ \   /\  __ \   /\  ___\   /\ \/ /
+\ \  __<   \ \ \/\ \  \ \____ \  \ \  __ \  \ \ \____     \ \  __ \  \ \  __ \  \ \ \____  \ \  _"-.
+ \ \_\ \_\  \ \_____\  \/\_____\  \ \_\ \_\  \ \_____\     \ \_\ \_\  \ \_\ \_\  \ \_____\  \ \_\ \_\
+  \/_/ /_/   \/_____/   \/_____/   \/_/\/_/   \/_____/      \/_/\/_/   \/_/\/_/   \/_____/   \/_/\/_/
+  1.0 Beta
+*/
+
+
 filename = file.FindInLua("royalhack/module/*.lua")
---surface.CreateFont( "arial", 12, 350, true, false, "AimBotSmall" )
-//Sprite Font
---surface.CreateFont( "cs", 20, 350, true, false, "sprite" )
+/*
+Table Values
+*/
+RoyalHack = {}
 Targets = {}
 Enemys = {}
-Weapons = {}
 Friends = {}
+Pistols = {"weapon_pistol","weapon_deagle","weapon_fiveseven","weapon_glock","weapon_rpg","weapon_m3"}
+Smg = {"weapon_ak47","weapon_mp5","weapon_m16",}
+Misc = {"weapon_gravitygun","weapon_physicsgun","tool_gun"}
 WalkbotSave = {}
 Cheat_TeamV = Color(0,255,0,255)
 Cheat_TeamIV = Color(0,0,255,255)
 Cheat_EnemyV = Color(255,0,0,255)
 Cheat_EnemyIV = Color(255,255,0,255)
+Background = Color( 41,41,41,255 )
+Labels = Color( 41,41,41,255 )
+Tab = Color( 41,41,41,255 )
+Buttons = Color( 41,41,41,255 )
 Kills = 0
 fire = 0
 timer.Create("Kill",3,1,function()
@@ -55,6 +71,7 @@ CreateConVar("royalhack_misc_killmessage",0,true,false)
 CreateConVar("royalhack_misc_killmessage_client",1,true,false)
 CreateConVar("royalhack_misc_killmessage_server",1,true,false)
 CreateConVar("royalhack_misc_killmessage_text","|Royal| killed you nub!",true, false)
+CreateConVar("royalhack_menu_colormod","Background",true,false)
 CreateConVar("royalhack_spinbot",0,true, false)
 CreateConVar("royalhack_misc_sky",1,true,false)
 CreateConVar("royalhack_menu_show",1,true,false)
@@ -90,6 +107,7 @@ CreateConVar("royalhack_aim_bonepos",1,true,false)
 CreateConVar("royalhack_aim_targetmode", 1, true,false)
 CreateConVar("royalhack_aim_norecoil", 1, true, false)
 CreateConVar("royalhack_aim_nospread",0,true,false)
+CreateConVar("royalhack_aim_PredictTarget",0,true,false)
 CreateConVar("royalhack_aimvector_z",20)
 CreateConVar("royalhack_aimvector_x",0)
 CreateConVar("royalhack_aimvector_y",0)
